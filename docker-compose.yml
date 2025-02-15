@@ -1,0 +1,9 @@
+services:
+  splitpal-backend:
+    image: python:3.12-slim-bullseye
+    ports:
+      - "3001:8000"
+    volumes:
+      - ./splitpal-backend:/app
+    working_dir: /app
+    command: tail -f /dev/null
