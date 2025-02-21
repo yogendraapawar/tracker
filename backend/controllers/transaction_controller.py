@@ -1,8 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
-from models.auth_model import LoginRequest
-from models.transaction_model import CreateTransactionRequest
 from pydantic import BaseModel
-from services.auth_service import create_access_token
+from services.user_service import create_access_token
 from typing import Dict
 import time
 
@@ -10,7 +8,7 @@ router = APIRouter()
 
 
 @router.post("/create-transaction")
-async def create_transaction(request: CreateTransactionRequest):
+async def create_transaction(request):
     try:
         transaction_record = request.dict()
 
@@ -29,6 +27,16 @@ async def create_transaction(request: CreateTransactionRequest):
 async def delete_transaction(transaction_id: str):
     try:
         return {"data": "Transaction deleted", "transaction_id": transaction_id}
+    except Exception as e:
+        raise HTTPException(
+            status_code=400, detail=f"Error deleting transaction: {str(e)}"
+        )
+
+
+@router.post("/add-payment-method")
+async def add_payment_method():
+    try:
+        return {"data": "Transaction deleted", "transaction_id": ""}
     except Exception as e:
         raise HTTPException(
             status_code=400, detail=f"Error deleting transaction: {str(e)}"
