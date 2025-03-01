@@ -1,7 +1,10 @@
 "use client";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveMenu } from "@/lib/features/active-menu-item/active-menu-slice";
+import {
+  setActiveMenu,
+  setActiveMenuHeading,
+} from "@/lib/slices/active-menu-slice";
 import {
   CounterClockwiseClockIcon,
   DashboardIcon,
@@ -14,22 +17,31 @@ function Footer() {
   const activeComponent = useSelector((state) => state.activeMenu.activeMenu);
 
   const menuItems = [
-    { id: "dashboard", icon: DashboardIcon },
-    { id: "transactions", icon: CounterClockwiseClockIcon },
-    { id: "add-group", icon: PlusCircledIcon },
-    { id: "settings", icon: GearIcon },
+    { id: "dashboard", icon: DashboardIcon, heading: "Dashboard" },
+    {
+      id: "transactions",
+      icon: CounterClockwiseClockIcon,
+      heading: "Transactions",
+    },
+    { id: "addTransaction", icon: PlusCircledIcon, heading: "Add Transaction" },
+    { id: "settings", icon: GearIcon, heading: "Settings" },
   ];
+
+  const handleMenuItemCLick = (id, heading) => {
+    dispatch(setActiveMenu(id));
+    dispatch(setActiveMenuHeading(heading));
+  };
 
   return (
     <div
-      className="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[90%] max-w-lg h-20
-      bg-slate-800/80 backdrop-blur-lg rounded-2xl shadow-lg flex justify-around items-center px-4"
+      className=" bottom-4  transform w-full max-w-lg h-20
+      bg-slate-800/80 backdrop-blur-lg shadow-lg flex justify-around items-center px-4"
     >
-      {menuItems.map(({ id, icon }) => (
+      {menuItems.map(({ id, icon, heading }) => (
         <FooterIcon
           key={id}
           icon={icon}
-          onClick={() => dispatch(setActiveMenu(id))}
+          onClick={()=>handleMenuItemCLick(id, heading)}
           large={activeComponent === id}
         />
       ))}

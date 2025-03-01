@@ -70,3 +70,25 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
+/* CSS (to hide scrollbar but keep scroll functionality) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* Hide scrollbar for IE10+ */
+  scrollbar-width: none;      /* Hide scrollbar for Firefox */
+}

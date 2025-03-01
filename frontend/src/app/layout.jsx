@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
     <StoreProvider>
       <html lang="en">
         <body className={`${righteous.variable} antialiased`}>
-          <div className="h-dvh bg-slate-400 flex flex-col">
+          <div className="h-dvh flex flex-col w-full">
             <Header />
             <div className="flex-1 overflow-auto">
               <div className="h-[calc(100%-160px)]">{children}</div>
