@@ -9,6 +9,6 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const eslintConfig = [...compat.extends("next/core-web-vitals"), "airbnb"];
+const eslintConfig = [...compat.extends("airbnb"), "airbnb"];
 
 export default eslintConfig;
